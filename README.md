@@ -1,6 +1,6 @@
 # Epoch Archive Backup & Restore Guide
 
-`epoch-archive-testnet`
+`epoch-archive-mainnet`
 
 Welcome to the Epoch Archive Backup & Restore guide. This README is designed to provide a comprehensive walkthrough to manage 0l Network node backups and restoration for your system using the provided Makefile.
 
@@ -15,8 +15,8 @@ Welcome to the Epoch Archive Backup & Restore guide. This README is designed to 
   
   ```
   cd ~
-  git clone https://github.com/0LNetworkCommunity/epoch-archive-testnet
-  cd ~/epoch-archive-testnet
+  git clone https://github.com/0LNetworkCommunity/epoch-archive-mainnet
+  cd ~/epoch-archive-mainnet
   make bins
   ```
 
@@ -26,7 +26,7 @@ Welcome to the Epoch Archive Backup & Restore guide. This README is designed to 
 ### This is most likely all you will need to restore and start/resume syncing:
 
   ```
-    cd ~/epoch-archive-testnet
+    cd ~/epoch-archive-mainnet
     make restore-all
   ```
 
