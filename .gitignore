@@ -1,0 +1,4 @@
+.Makefile.swp
+metacache/
+backup.log
+local.config
