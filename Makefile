@@ -10,7 +10,7 @@ GIT_ORG=0LNetworkCommunity
 endif
 
 ifndef GIT_REPO
-GIT_REPO=epoch-archive-testnet
+GIT_REPO=epoch-archive-mainnet
 endif
 
 ifndef BIN_PATH
