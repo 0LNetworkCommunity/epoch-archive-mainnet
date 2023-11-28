@@ -14,7 +14,7 @@ GIT_REPO=epoch-archive-mainnet
 endif
 
 ifndef BIN_PATH
-BIN_PATH=/usr/bin
+BIN_PATH=$$HOME/.cargo/bin
 endif
 
 ifndef BIN_FILE
