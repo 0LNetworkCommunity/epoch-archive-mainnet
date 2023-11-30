@@ -35,7 +35,7 @@ ARCHIVE_PATH=${REPO_PATH}/snapshots
 endif
 
 ifndef GENESIS_DIRNAME
-GENESIS_DIRNAME=upgrades/v6.9
+GENESIS_DIRNAME=upgrades/v6.9.0
 endif
 
 ifndef GENESIS_PATH
