@@ -34,6 +34,10 @@ ifndef ARCHIVE_PATH
 ARCHIVE_PATH=${REPO_PATH}/snapshots
 endif
 
+ifndef GENESIS_DIRNAME
+GENESIS_DIRNAME=upgrades/v6.9
+endif
+
 ifndef GENESIS_PATH
 GENESIS_PATH=~/.libra/genesis
 endif
@@ -161,7 +165,7 @@ wipe-backups:
 	rm -rf ${REPO_PATH}/metacache
 	git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch -r snapshots' -- --all
 	@$(MAKE) git-gc
-	git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch -r genesis' -- --all
+	git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch -r ${GENESIS_DIRNAME}' -- --all
 	@$(MAKE) git-gc
 	@$(MAKE) prep-archive-path
 	git add -A
@@ -186,7 +190,7 @@ sync-repo:
 		fi
 
 backup-genesis:
-	mkdir -p ${REPO_PATH}/genesis && cp -f ${GENESIS_PATH}/genesis.blob ${REPO_PATH}/genesis/genesis.blob && cp -f ${GENESIS_PATH}/waypoint.txt ${REPO_PATH}/genesis/waypoint.txt
+	mkdir -p ${REPO_PATH}/${GENESIS_DIRNAME} && cp -f ${GENESIS_PATH}/genesis.blob ${REPO_PATH}/${GENESIS_DIRNAME}/genesis.blob && cp -f ${GENESIS_PATH}/waypoint.txt ${REPO_PATH}/${GENESIS_DIRNAME}/waypoint.txt
 
 backup-continuous: prep-archive-path backup-genesis
 	cd ${ARCHIVE_PATH} && ${BIN_PATH}/${BIN_FILE} backup continuously --backup-service-address ${BACKUP_SERVICE_URL}:6186 --state-snapshot-interval-epochs ${BACKUP_EPOCH_FREQ} --transaction-batch-size ${BACKUP_TRANS_FREQ} --command-adapter-config ${REPO_PATH}/epoch-archive.yaml
@@ -208,7 +212,7 @@ restore-init:
 	${SOURCE_PATH}/target/release/libra config fullnode-init
 
 restore-genesis:
-	mkdir -p ${GENESIS_PATH} && cp -f ${REPO_PATH}/genesis/genesis.blob ${GENESIS_PATH}/genesis.blob && cp -f ${REPO_PATH}/genesis/waypoint.txt ${GENESIS_PATH}/waypoint.txt
+	mkdir -p ${GENESIS_PATH} && cp -f ${REPO_PATH}/${GENESIS_DIRNAME}/genesis.blob ${GENESIS_PATH}/genesis.blob && cp -f ${REPO_PATH}/${GENESIS_DIRNAME}/waypoint.txt ${GENESIS_PATH}/waypoint.txt
 
 restore-all: sync-repo wipe-db
 	if [ $(SKIP_INIT) -eq 0 ]; then \
