@@ -307,4 +307,4 @@ stop-continuous:
 log-cleanup:
 	echo "This is where we will eventually deal with the size of backup.log!"
 
-cron: git-sling-all start-continuous log-cleanup
+cron: git-sling-recent start-continuous log-cleanup
