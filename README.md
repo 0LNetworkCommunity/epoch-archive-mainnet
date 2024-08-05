@@ -8,6 +8,7 @@ Welcome to the Epoch Archive Backup & Restore guide. This README is designed to 
 
 - Ensure you have the necessary tools installed, such as the latest
 - The Makefile is designed for libra-framework v6.9.x (soon v7) Ensure you are using the correct version.
+- The files are compressed with gzip
 
 ## Getting started
 
